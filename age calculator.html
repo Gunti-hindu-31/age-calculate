@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <style>
+        .a {
+            border: solid black 5px;
+            height: 300px;
+            width: 400px;
+            text-align: center;
+            padding: 20px;
+            margin: auto;
+            margin-top: 50px;
+        }
+        h1, h3 {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        button {
+            border-radius: 5px; 
+            background-color: royalblue; 
+            color: white;
+            padding: 5px 10px; 
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="a">
+        <h1 style="color: brown;">AGE CALCULATOR</h1>
+        <h3>Enter your date of birth:</h3>
+        <input type="date" id="dob"><br><br>
+        <button onclick="showAge()">Calculate Age</button>
+        <p id="result" style="font-size: 18px; margin-top: 10px;"></p>
+    </div>
+
+    <script>
+        function calculateAge(dob) {
+            let birthDate = new Date(dob);
+            let today = new Date();
+            
+            let age = today.getFullYear() - birthDate.getFullYear();
+            let monthDiff = today.getMonth() - birthDate.getMonth();
+            let dayDiff = today.getDate() - birthDate.getDate();
+
+          
+            if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+                age--;
+            }
+
+            return age;
+        }
+
+        function showAge() {
+            let dobInput = document.getElementById("dob").value;
+            
+            if (dobInput) {
+                let age = calculateAge(dobInput);
+                document.getElementById("result").innerText = `Your age is: ${age} years`;
+            } else {
+                document.getElementById("result").innerText = "Please enter your date of birth.";
+            }
+        }
+    </script>
+
+</body>
+</html>
